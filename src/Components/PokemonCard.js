@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import "./CSS/Pokemon.css";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import TextField from "@mui/material";
+import TextField from "@mui/material/TextField";
 
-export default function PokemonCard({name}){
+export default function PokemonCard( {name} ){
     const [edit, setEdit] = useState(
         {
             pokeID: null,
             text: "",
-            image: null
+            image: document.createElement("img"),
         }
     )
     const [update, setUpdate] = useState("");
@@ -20,8 +20,8 @@ export default function PokemonCard({name}){
                 setEdit({
                 pokeID: pokemon.id,
                 text: pokemon.name,
-                image: pokemon.sprites.front_default
                 })
+                edit.image.setAttribute("src",pokemon.sprites.front_default);
             })
             .catch(rejected => console.log(rejected))
     }
