@@ -40,12 +40,11 @@ export default function PokemonCard( {object} ){
 
     return(
         <div>
-        {/* {console.log(edit)} */}
             {edit.image}
             <h1>{edit.pokeID} - {edit.text}</h1>
             <div class="updateForm" onSubmit={handleSubmit}>
                 <TextField onInput={handleChange} variant="filled" />
-                <Button onClick={handleSubmit} variant="contained">Change</Button>
+                <Button onClick={handleSubmit} variant="contained" color="success">Change</Button>
             </div>
         </div>
     );

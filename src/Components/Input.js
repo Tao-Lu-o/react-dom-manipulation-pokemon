@@ -15,21 +15,19 @@ export default function Input(){
         }
     )
 
+    // Function to get the Pokemon, same as PokemonCard component but without the use of a setter
     function getPokemon(newName){
         fetch(`https://pokeapi.co/api/v2/pokemon/${newName}`)
             .then(request => request.json())
             .then(pokemon => {
-                console.log("name before setEdit: " + newName);
+                // I know this is terrible use of Hooks but setObject wasn't working for whatever reason
+                // Therefore I opted out to just edit the object's attributes directly.
                 object.pokeID = pokemon.id;
                 object.text = pokemon.name;
                 object.image = <img src={pokemon.sprites.front_default} alt={`picture of ${object.text}`}/>;
-                // setObject({
-                //     pokeID: pokemon.id,
-                //     text: pokemon.name,
-                //     image: <img src={pokemon.sprites.front_default} alt={`picture of ${object.text}`}/>
-                // })
-                console.log(pokemon);
                 console.log(object);
+
+                // A new PokemonCard is created, added to the list
                 let newPokemon = <PokemonCard object={object}/>;
                 const updatedList = [newPokemon, ...list];
                 setList(updatedList);
@@ -39,12 +37,10 @@ export default function Input(){
 
     const handleChange = (e) => {
         setInput(e.target.value);
-        console.log("input: " + input);
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("input submit: " + input);
         getPokemon(input);
     }
 
