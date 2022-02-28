@@ -5,6 +5,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <h1>Pokédex</h1>
         <Input />
       </header>
     </div>
